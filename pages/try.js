@@ -1,16 +1,36 @@
 import Head from 'next/head'
 import Script from 'next/script'
 import styles from '../styles/Home.module.css'
-// import Link from 'next/link'
-
-
-
-
+import imageUrlBuilder from '@sanity/image-url';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+// import Image from 'next/image'
 // import './styles/global.css'
 
-export default function Home() {
+export default function Home({ posts }) {
 
-       
+  const router = useRouter();
+  const [ mappedPost, setMappedPosts ] = useState([]);
+
+  useEffect(() => {
+    if (posts.length) {
+      const imgBuilder = imageUrlBuilder({
+        projectId: 'nt8zwiut',
+        dataset: 'production',
+    });
+
+      setMappedPosts(
+        posts.map(p => {
+          return {
+            ...p,
+            mainImage: imgBuilder.image(p.mainImage).width(500).height(250),
+          }
+        })
+      )
+    } else {
+      setMappedPosts([])
+    }
+  }, [posts])
   return (
     <div className={styles.container}>
       <Head>
@@ -89,30 +109,30 @@ export default function Home() {
       >
         <ul
           className="navbar-nav ms-auto mb-2 mb-lg-0"
-          style={{ fontSize: 20, fontFamily: 'rooneysans', fontWeight: "bold" }}
+          style={{ fontSize: 20, fontWeight: "bold" }}
         >
           <li className="nav-item active">
-            <a className="nav-link" aria-current="page"  style={{ fontFamily: 'rooneysans', fontWeight: "bold" }} >
+            <a className="nav-link" aria-current="page" href="#">
               Home
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#vision" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
+            <a className="nav-link" href="#vision">
               Vision
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#gallery" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
+            <a className="nav-link" href="#gallery">
               Gallery
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#blog" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
+            <a className="nav-link" href="#blog">
               Blog
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#footer" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
+            <a className="nav-link" href="#footer">
               Contact
             </a>
           </li>
@@ -137,7 +157,7 @@ export default function Home() {
           <h1
             className="mb-3"
             style={{
-              fontFamily: 'rooneysans',
+              fontFamily: '"Varela Round", sans-serif',
               fontSize: 45,
               fontWeight: "bold"
             }}
@@ -146,7 +166,7 @@ export default function Home() {
           </h1>
           <h4
             className="mb-4"
-            style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+            style={{ fontFamily: '"Lora", serif', fontWeight: "bold" }}
           >
              A group of young professionals from different works of life across the globe who love
              God and are passionate about missions.
@@ -154,7 +174,7 @@ export default function Home() {
           </h4>
           <a
             className="btn-outline-warning btn-lg"
-            style={{ fontSize: 20, fontFamily: 'rooneysans', fontWeight: "bold" }}
+            style={{ fontSize: 20, fontWeight: "bold" }}
             href="#vision"
             role="button"
           >
@@ -184,14 +204,14 @@ export default function Home() {
       >
       <h1
         className="vision-category"
-        style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+        style={{ fontFamily: '"Varela Round", sans-serif', fontWeight: "bold" }}
       >
         OUR VISION
       </h1>
       <blockquote
         className="lead"
         style={{
-          fontFamily: 'rooneysans',
+          fontFamily: '"Lora", serif',
           fontWeight: "bold",
           lineHeight: "2em"
         }}
@@ -207,58 +227,51 @@ export default function Home() {
   </>
 
 
-  {/* What we do */}
+  {/* Wha we do */}
 <>
   <section id="whatWeDo" className="mt-5 mb-5">
     <h1
       className="text-center mb-5 fw-500 mb-2"
-      style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+      style={{ fontFamily: '"Varela Round", sans-serif', fontWeight: "bold" }}
     >
       What We Do
     </h1>
     <div className="container">
-      <div className="row"
-       style={{ fontFamily: 'rooneysans', fontSize: 15 }}>
-        <div className="col-lg-4" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
+      <div className="row">
+        <div className="col-lg-4">
           <img className="img-fluid" src="assets/christianImg.jpg" alt="" />
-          <h1 
-            className="d-flex justify-content-center" 
-            style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}            
-          >
-            We Groan
-          </h1>
+          <h1 className="d-flex justify-content-center">We Groan</h1>
           <p className="text-muted d-flex justify-content-center">
            Pray daily at 9am WAT for missionaries and unreached people groups around the world.  
            </p>
            <p className="d-flex justify-content-center">
-            <a href="https://mixlr.com/ypsinmissions" className="btn-outline-warning btn-lg" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }} >
+            <a href="https://mixlr.com/ypsinmissions" className="btn-outline-warning btn-lg">
               JOIN PRAYERS HERE
             </a>
           </p>
           
         </div>
-        <div className="col-lg-4" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
+        <div className="col-lg-4">
           <img className="img-fluid" src="assets/headerimg.jpg" alt="" />
-          <h1 className="d-flex justify-content-center" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}> We Go</h1>
+          <h1 className="d-flex justify-content-center">We Go</h1>
           <p className="text-muted">
             Engage in short term mission trips twice every year to engage.
           </p>
           <p className="d-flex justify-content-center">
-            <a href="post/post1" className="btn-outline-warning btn-lg" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
+            <a href="https://mixlr.com/ypsinmissions" className="btn-outline-warning btn-lg">
               READ MORE
             </a>
           </p>
         </div>
-        <div className="col-lg-4" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
+        <div className="col-lg-4">
           <img className="img-fluid" src="assets/vision.jpg" alt="" />
-          <h1 className="d-flex justify-content-center" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}> We Give</h1>
+          <h1 className="d-flex justify-content-center">We Give</h1>
           <p className="text-muted d-flex justify-content-center">
-            Partner with to church planting and other projects on the mission's fields. Click the button to give to the work we do here
-
+            Partner with to church planting and other projects on the mission's fields
           </p>
           <p className="d-flex justify-content-center">
-            <a href="post/post1" className="btn-outline-warning btn-lg" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
-              GIVE TO OUR WORK
+            <a href="https://mixlr.com/ypsinmissions" className="btn-outline-warning btn-lg">
+              FIND OUT MORE
             </a>
           </p>
         </div>
@@ -275,7 +288,7 @@ export default function Home() {
   <section id="gallery" className="mt-5 ">
     <h1
       className="text-center mb-5 fs-900 mb-2"
-      style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+      style={{ fontFamily: '"Varela Round", sans-serif', fontWeight: "bold" }}
     >
       Photo Gallery
     </h1>
@@ -390,7 +403,7 @@ export default function Home() {
     <div className="container">
       <h1
         className="text-center mb-5 fw-500 mb-2"
-        style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+        style={{ fontFamily: '"Varela Round", sans-serif', fontWeight: "bold" }}
       >
         Read More About Our Work
       </h1>
@@ -399,23 +412,22 @@ export default function Home() {
           <div className="blog-img d-flex justify-content-center">
             <img
               className="img-fluid"
-              src="assets/BlogPost.jpeg"
+              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp"
               alt="avatar"
-              style={{ width: 350 }}
+              style={{ width: 250 }}
             />
           </div>
           {/* <h5 class="mb-3">Anna Deynah</h5> */}
-          <h2 className=" mb-3" style={{ fontFamily: 'rooneysans' , fontWeight: "bold"}}>
-            Why is God silent?
-          </h2>
-          <p className="text-muted" style={{ fontFamily: 'rooneysans' }}>
-          The teacher is always silent during a test.
-A good teacher anyways, not the miracle center kind, the one who came to class every day, prepped his students, even did weekend classes and online videos during the COVID-19 pandemic.
-
+          <p className="blog-meta mb-3">
+            By Admin <span>September 24, 2022</span>
+          </p>
+          <p className="text-muted">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos
+            id officiis hic tenetur quae quaerat ad velit ab hic tenetur.
           </p>
           <p className="d-flex justify-content-center">
-            <a href="post/post1" className="btn-outline-warning btn-lg" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
-              READ MORE
+            <a href="" className="btn-outline-warning btn-lg">
+              Read More
             </a>
           </p>
         </div>
@@ -429,16 +441,16 @@ A good teacher anyways, not the miracle center kind, the one who came to class e
             />
           </div>
           {/* <h5 class="mb-3">Anna Deynah</h5> */}
-          <h3 className="blog-meta mb-3" style={{ fontFamily: 'rooneysans' }}>
-                  Why is God silent
-          </h3>
-          <p className="text-muted" style={{ fontFamily: 'rooneysans' }}>
+          <p className="blog-meta mb-3">
+            By Admin <span>September 24, 2022</span>
+          </p>
+          <p className="text-muted">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos
             id officiis hic tenetur quae quaerat ad velit ab hic tenetur.
           </p>
           <p className="d-flex justify-content-center">
-            <a href="" className="btn-outline-warning btn-lg" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
-              READ MORE
+            <a href="" className="btn-outline-warning btn-lg">
+              Read More
             </a>
           </p>
         </div>
@@ -452,16 +464,16 @@ A good teacher anyways, not the miracle center kind, the one who came to class e
             />
           </div>
           {/* <h5 class="mb-3">Maria Kate</h5> */}
-          <p className="blog-meta mb-3" style={{ fontFamily: 'rooneysans' }}>
+          <p className="blog-meta mb-3">
             By Admin <span>September 24, 2022</span>
           </p>
-          <p className="text-muted" style={{ fontFamily: 'rooneysans' }}>
+          <p className="text-muted">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos
             id officiis hic tenetur quae quaerat ad velit ab hic tenetur.
           </p>
           <p className="d-flex justify-content-center">
-            <a href="" className="btn-outline-warning btn-lg" style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}>
-              READ MORE
+            <a href="" className="btn-outline-warning btn-lg">
+              Read More
             </a>
           </p>
         </div>
@@ -470,13 +482,29 @@ A good teacher anyways, not the miracle center kind, the one who came to class e
   </section>
 </>
 
+<>
+   <div className={styles.mainElement}>
+    <h1>From our blog</h1>
+
+    <h3> Recent Posts</h3>
+
+    <div className={styles.feed}>
+        {mappedPost.length ? mappedPost.map((p, index) =>{
+          <div onClick={() => router.push(`/post/${p.slug.current}`)} key={index} className={styles.post}>
+            <h3> {p.title}</h3>
+            <img className={styles.mainImage} src={p.mainImage} />
+          </div>
+        }): <>No Post yet</>}
+    </div>
+  </div> 
+</>
 
   {/* Footer */}
 <>
   <footer
     id="footer"
     className="page-footer font-small blue pt-4 mt-10"
-    style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+    style={{ fontFamily: '"Lora", serif', fontWeight: "bold" }}
   >
     <div className="container-fluid text-center text-md-left ">
       {/* Grid row */}
@@ -486,10 +514,9 @@ A good teacher anyways, not the miracle center kind, the one who came to class e
           {/* Content */}
           <h5
             className="text-uppercase"
-            style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
-
+            style={{ fontFamily: '"Lora", serif', fontWeight: "bold" }}
           >
-            About YPS
+            About yps
           </h5>
           <p>
               A group of young professionals in from different works of life across the globe who love
@@ -502,7 +529,7 @@ A good teacher anyways, not the miracle center kind, the one who came to class e
         <div className="col-md-3 mb-md-0 mb-3">
           <h5
             className="text-uppercase"
-            style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+            style={{ fontFamily: '"Lora", serif', fontWeight: "bold" }}
           >
             Follow us on
           </h5>
@@ -538,14 +565,14 @@ A good teacher anyways, not the miracle center kind, the one who came to class e
         <div className="col-md-3 mb-md-0 mb-3">
           <h5
             className="text-uppercase"
-            style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+            style={{ fontFamily: '"Lora", serif', fontWeight: "bold" }}
           >
             Join Us Here
           </h5>
           <div className="icon">
             <a
               className="btn-outline-warning btn-lg"
-              style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}
+              style={{ fontSize: 17, fontWeight: "bold" }}
               href="https://forms.gle/McZJpbFZ2p8WsW6K9"
               role="button"
             >
@@ -558,9 +585,9 @@ A good teacher anyways, not the miracle center kind, the one who came to class e
     </div>
     {/* Footer Links */}
     {/* Copyright */}
-    <div className="footer-copyright text-center py-3" style={{ fontFamily: 'rooneysans', fontWeight: "bold", fontSize: 15 }}>
+    <div className="footer-copyright text-center py-3">
       © 2022 Copyright:
-      <span style={{ fontFamily: 'rooneysans', fontWeight: "bold" }}> Young Professionals</span>
+      <span> Young Professionals</span>
     </div>
     {/* Copyright */}
   </footer>
@@ -583,8 +610,29 @@ A good teacher anyways, not the miracle center kind, the one who came to class e
         ></Script>   
     
 
-      </main>   
+      </main>
+
+    
     </div>
   )
 }
 
+export const getServerSideProps = async pageContext => {
+  const query = encodeURIComponent('*[ _type == "post"]');
+  const url = `https://nt8zwiut.api.sanity.io/v1/data/query/production?query=${query}`;
+  const result = await fetch(url).then(res => res.json());
+
+  if (!result.result || !result.result.length) {
+    return {
+      props: {
+        posts: [],
+      }
+    }
+  } else {
+    return {
+      props: {
+        posts: result.result,
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -20,7 +20,229 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: black;
   }
+} */
+
+
+@import url('https://fonts.googleapis.com/css2?family=spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    
+} 
+@font-face{
+    font-family: rooneysans;
+    src: url(../pages//RooneySansRegular.ttf);
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+html {
+    scroll-behavior: smooth;
+    font-family: rooneysans;
+}
+body {
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    font-family: rooneysans;
+
+}
+ul {
+    list-style: none;
+}
+
+li {
+    list-style-type: none;
+}
+.bg-gold {
+    background-color: #FBEB5B;
+}
+.bg-orange {
+    background-color: orangered;
+}
+.text-blue {
+    color: blueviolet;
+}
+.text-white {
+    color: #fff;
+}
+.btn, button {
+    border: none;
+    cursor: pointer;
+}
+
+.lead {
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    word-spacing: 0.4vw;
+}
+p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+.text-md {
+    font-size: 1.5rem;
+}
+.text-lg {
+    font-size: 2rem;
+    font-weight: 500;
+}
+.text-sm {
+    font-size: 1.3rem;
+}
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navbar */
+.navbar {
+    background: orangered;
+    
+}
+
+header .intro {
+    position: relative;
+}
+
+header .intro .head{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+header .intro .head h1 {
+    font-family: "Leckerli One", cursive;
+    color: #000;
+}
+
+header .navbar .navbar-nav .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s;
+} 
+header .navbar .navbar-nav .nav-link:hover::after {
+    width: 60%;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s;
+    border-bottom: 2px solid #000;
+} 
+
+ @media (min-width: 320px) {
+    .head h1 {
+        font-size: 0.7rem;
+    }
+} 
+
+/* vision */
+.vision {
+    /* background: linear-gradient(rgba(216, 186, 88, 0.9), rgba(216, 186, 88, 0.9)), url('/public/assets/vision.jpg'); */
+    height: 400px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ 
+ .vision-category {
+     padding: 0 10vw;
+     font-size: 40px;
+     font-weight: 700;
+     margin-bottom: 10px;
+     text-transform: capitalize;
+ }
+ .vision .text-sm {
+     font-weight: 500;
+ }
+ /* Who we are */
+ .featured {
+    background: linear-gradient(rgba(216, 186, 88, 0.9), rgba(216, 186, 88, 0.9)), url('/public/assets/vision.jpg');
+    width: 100%;
+    border-radius: 20px;
+
+ }
+
+ /* To top icon */
+ 
+.to-top {
+    /* background: orangered; */
+    position: fixed;
+    bottom: 16px;
+    right: 32px;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+    font-size: 32px;
+    color: #1f1f1f;
+    opacity: 0;
+    text-decoration: none;
+    pointer-events: none;
+    transition: all .4s;
+
+}
+.to-top.active  {
+    bottom: 32px;
+    pointer-events: auto;
+    opacity: 1;
+}
+.to-top:hover {
+    opacity: 0.8;
+    color: #fff;
+
+}
+
+/* footer */
+.page-footer {
+    background: linear-gradient(rgba(219, 186, 88, 1), rgba(219, 186, 88, 1));
+
+
+}
+.single-blog {
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-top: 30px;
+    background-color: #fff;
+}
+.blog-meta {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+.blog-meta span {
+    margin-right: 10px;
+    font-size: 16px;
+    color: cornflowerblue;
+}
+.blog-text {
+    font-size: 14px;
+    text-align: justify;
+}
+.single-blog h2 {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #007bff;
+}
+
+.single-blog h2 a {
+    text-decoration: none;
 }
